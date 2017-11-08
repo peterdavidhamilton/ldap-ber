@@ -41,7 +41,6 @@ module BER
         oid.unshift g.last
         oid.unshift g.first
         BerIdentifiedOid.new(oid)
-        # oid
 
       when :array
         seq = BerIdentifiedArray.new
