@@ -171,12 +171,12 @@
 :result:
   0:
     - :success
-    - Success
+    - LDAP Success
     - Indicates the requested client operation completed successfully.
     - LDAP_SUCCESS:0x00
   1:
     - :operations_error
-    - Operations Error
+    - LDAP Operations Error
     - >
       Indicates an internal error.
       The server is unable to respond with a more specific error and is also unable to properly respond to a request.
@@ -184,45 +184,45 @@
     - LDAP_OPERATIONS_ERROR:0x01
   2:
     - :protocol_error
-    - Protocol Error
+    - LDAP Protocol Error
     - Indicates that the server has received an invalid or malformed request from the client.
     - LDAP_PROTOCOL_ERROR:0x02
   3:
     - :time_limit_exceeded
-    - Time Limit Exceeded
+    - LDAP Time Limit Exceeded
     - >
       Indicates the operation's time limit specified by either the client or the server has been exceeded.
       On search operations, incomplete results are returned.
     - LDAP_TIMELIMIT_EXCEEDED:0x03
   4:
     - :size_limit_exceeded
-    - Size Limit Exceeded
+    - LDAP Size Limit Exceeded
     - >
       Indicates in a search operation, the size limit specified by the client or the server has been exceeded.
       Incomplete results are returned.
     - LDAP_SIZELIMIT_EXCEEDED:0x04
   5:
     - :compare_false
-    - False Comparison
+    - LDAP False Comparison
     - >
       Does not indicate an error condition.
       Indicates that the results of a compare operation are false.
     - LDAP_COMPARE_FALSE:0x05
   6:
     - :compare_true
-    - True Comparison
+    - LDAP True Comparison
     - >
       Does not indicate an error condition.
       Indicates that the results of a compare operation are true.
     - LDAP_COMPARE_TRUE:0x06
   7:
     - :auth_method_not_supported
-    - Authentication Method Not Supported
+    - LDAP Authentication Method Not Supported
     - Indicates during a bind operation the client requested an authentication method not supported by the LDAP server.
     - LDAP_AUTH_METHOD_NOT_SUPPORTED:0x07
   8:
     - :stronger_auth_required
-    - Stronger Authentication Needed
+    - LDAP Stronger Authentication Needed
     - >
       Indicates one of the following:
       In bind requests, the LDAP server accepts only strong authentication.
@@ -231,75 +231,75 @@
     - LDAP_STRONG_AUTH_REQUIRED:0x08
   9:
     -
-    - Reserved.
+    - LDAP Reserved.
     -
     - Reserved:0x09
   10:
     - :referral
-    - Referral
+    - LDAP Referral
     - >
       Does not indicate an error condition.
       In LDAPv3, indicates that the server does not hold the target entry of the request, but that the servers in the referral field may.
     - LDAP_REFERRAL:0x0A
   11:
     - :admin_limit_exceeded
-    - Admin Limit Exceeded
+    - LDAP Admin Limit Exceeded
     - Indicates an LDAP server limit set by an administrative authority has been exceeded.
     - LDAP_ADMINLIMIT_EXCEEDED:0x0B
   12:
     - :unavailable_critical_extension
-    - Unavailable crtical extension
+    - LDAP Unavailable Critical Extension
     - >
       Indicates the LDAP server was unable to satisfy a request because one or more critical extensions were not available.
       Either the server does not support the control or the control is not appropriate for the operation type.
     - LDAP_UNAVAILABLE_CRITICAL_EXTENSION:0x0C
   13:
     - :confidentiality_required
-    - Confidentiality Required
+    - LDAP Confidentiality Required
     - Indicates the session is not protected by a protocol such as Transport Layer Security (TLS), which provides session confidentiality.
     - LDAP_CONFIDENTIALITY_REQUIRED:0x0D
   14:
     - :sasl_bind_in_progress
-    - saslBindInProgress
+    - LDAP saslBindInProgress
     - >
       Does not indicate an error condition, but indicates the server is ready for the next step in the process.
       The client must send the server the same SASL mechanism to continue the process.
     - LDAP_SASL_BIND_IN_PROGRESS:0x0E
   15:
     -
-    - Not used.
+    - LDAP Not used.
     -
     - NotUsed:0x0F
   16:
     - :no_such_attribute
-    - No Such Attribute
+    - LDAP No Such Attribute
     - Indicates the attribute specified in the modify or compare operation does not exist in the entry.
     - LDAP_NO_SUCH_ATTRIBUTE:0x10
   17:
     - :undefined_attribute_type
-    - Undefined Attribute Type
+    - LDAP Undefined Attribute Type
     - Indicates the attribute specified in the modify or add operation does not exist in the LDAP server's schema.
     - LDAP_UNDEFINED_TYPE:0x11
   18:
     - :inappropriate_matching
-    - Inappropriate Matching
+    - LDAP Inappropriate Matching
     - Indicates the matching rule specified in the search filter does not match a rule defined for the attribute's syntax.
     - LDAP_INAPPROPRIATE_MATCHING:0x12
   19:
     - :constraint_violation
-    - Constraint Violation
+    - LDAP Constraint Violation
     - >
       Indicates the attribute value specified in a modify, add, or modify DN operation violates constraints placed on the attribute.
       The constraint can be one of size or content (string only, no binary).
     - LDAP_CONSTRAINT_VIOLATION:0x13
   20:
     - :attribute_or_value_exists
-    - Attribute or Value Exists
+    - LDAP Attribute or Value Exists
     - Indicates the attribute value specified in a modify or add operation already exists as a value for that attribute.
     - LDAP_TYPE_OR_VALUE_EXISTS:0x14
   21:
     - :invalid_attribute_syntax
-    - Invalid Attribute Syntax
+    - LDAP Invalid Attribute Syntax
     - Indicates the attribute value specified in an add, compare, or modify operation is an unrecognized or invalid syntax for the attribute.
     - LDAP_INVALID_SYNTAX:0x15
   #
@@ -307,7 +307,7 @@
   #
   32:
     - :no_such_object
-    - No Such Object
+    - LDAP No Such Object
     - >
       Indicates the target object cannot be found.
       This code is not returned on following operations:
@@ -316,26 +316,26 @@
     - LDAP_NO_SUCH_OBJECT:0x20
   33:
     - :alias_problem
-    - Alias Problem
+    - LDAP Alias Problem
     - Indicates an error occurred when an alias was dereferenced.
     - LDAP_ALIAS_PROBLEM:0x21
   34:
     - :invalid_dn_syntax
-    - Invalid DN Syntax
+    - LDAP Invalid DN Syntax
     - >
       Indicates the syntax of the DN is incorrect.
       If the DN syntax is correct, but the LDAP server's structure rules do not permit the operation, the server returns LDAP_UNWILLING_TO_PERFORM.
     - LDAP_INVALID_DN_SYNTAX:0x22
   35:
     - :ldap_is_leaf
-    - Failed On Leaf
+    - LDAP Failed On Leaf
     - >
       Indicates the specified operation cannot be performed on a leaf entry.
       This code is not currently in the LDAP specifications, but is reserved for this constant.
     - LDAP_IS_LEAF:0x23
   36:
     - :alias_dereferencing_problem
-    - Alias Dereferencing Problem
+    - LDAP Alias Dereferencing Problem
     - Indicates during a search operation, either the client does not have access rights to read the aliased object's name or dereferencing is not allowed.
     - LDAP_ALIAS_DEREF_PROBLEM:0x24
   #
@@ -343,7 +343,7 @@
   #
   48:
     - :inappropriate_authentication
-    - Inappropriate Authentication
+    - LDAP Inappropriate Authentication
     - >
       Indicates during a bind operation, the client is attempting to use an authentication method that the client cannot use correctly.
       For example, either of the following cause this error:
@@ -352,7 +352,7 @@
     - LDAP_INAPPROPRIATE_AUTH:0x30
   49:
     - :invalid_credentials
-    - Invalid Credentials
+    - LDAP Invalid Credentials
     - >
       Indicates during a bind operation one of the following occurred:
       The client passed either an incorrect DN or password.
@@ -360,22 +360,22 @@
     - LDAP_INVALID_CREDENTIALS:0x31
   50:
     - :insufficient_access_rights
-    - Insufficient Access Rights
+    - LDAP Insufficient Access Rights
     - Indicates the caller does not have sufficient rights to perform the requested operation.
     - LDAP_INSUFFICIENT_ACCESS:0x32
   51:
     - :busy
-    - Busy
+    - LDAP Busy
     - Indicates the LDAP server is too busy to process the client request at this time but if the client waits and resubmits the request, the server may be able to process it then.
     - LDAP_BUSY:0x33
   52:
     - :unavailable
-    - Unavailable
+    - LDAP Unavailable
     - Indicates the LDAP server cannot process the client's bind request, usually because it is shutting down.
     - LDAP_UNAVAILABLE:0x34
   53:
     - :unwilling_to_perform
-    - Unwilling to perform
+    - LDAP Unwilling To Perform
     - >
       Indicates the LDAP server cannot process the request because of server-defined restrictions.
       This error is returned for the following reasons:
@@ -385,8 +385,8 @@
       Connection restrictions prevent the action.
     - LDAP_UNWILLING_TO_PERFORM:0x35
   54:
-    - :loo_detected
-    - Referral Loop Detected
+    - :loop_detected
+    - LDAP Referral Loop Detected
     - Indicates the client discovered an alias or referral loop, and is thus unable to complete this request.
     - LDAP_LOOP_DETECT:0x36
   #
@@ -394,7 +394,7 @@
   #
   64:
     - :naming_violation
-    - Naming Violation
+    - LDAP Naming Violation
     - >
       Indicates the add or modify DN operation violates the schema's structure rules. For example,
       The request places the entry subordinate to an alias.
@@ -403,7 +403,7 @@
       LDAP_NAMING_VIOLATION:0x40
   65:
     - :object_class_violation
-    - Object Class Violation
+    - LDAP Object Class Violation
     - >
       Indicates the add, modify, or modify DN operation violates the object class rules for the entry.
       For example, the following types of request return this error:
@@ -413,7 +413,7 @@
     - LDAP_OBJECT_CLASS_VIOLATION:0x41
   66:
     - :not_allowed_on_non_leaf
-    - Not Allowed On Non-Leaf
+    - LDAP Not Allowed On Non-Leaf
     - >
       Indicates the requested operation is permitted only on leaf entries.
       For example, the following types of requests return this error:
@@ -422,27 +422,27 @@
     - LDAP_NOT_ALLOWED_ON_NONLEAF:0x42
   67:
     - :not_allowed_on_rdn
-    - Not Allowed On RDN
+    - LDAP Not Allowed On RDN
     - Indicates the modify operation attempted to remove an attribute value that forms the entry's relative distinguished name.
     - LDAP_NOT_ALLOWED_ON_RDN:0x43
   68:
     - :entry_already_exists
-    - Entry Already Exists
+    - LDAP Entry Already Exists
     - Indicates the add operation attempted to add an entry that already exists, or that the modify operation attempted to rename an entry to the name of an entry that already exists.
     - LDAP_ALREADY_EXISTS:0x44
   69:
     - :object_class_mods_prohibited
-    - ObjectClass Modifications Prohibited
+    - LDAP ObjectClass Modifications Prohibited
     - Indicates the modify operation attempted to modify the structure rules of an object class.
     - LDAP_NO_OBJECT_CLASS_MODS:0x45
   70:
     - :reserved_for_cldap
-    - Reserved for CLDAP.
+    - LDAP Reserved for CLDAP
     -
     - LDAP_RESULTS_TOO_LARGE:0x46
   71:
     - :affects_multiple_dsas
-    - Affects Multiple DSAs
+    - LDAP Affects Multiple DSAs
     - Indicates the modify DN operation moves the entry from one LDAP server to another and thus requires more than one LDAP server.
     - LDAP_AFFECTS_MULTIPLE_DSAS:0x47
   #
@@ -450,104 +450,104 @@
   #
   80:
     - :other
-    - Other
+    - LDAP Other
     - >
       Indicates an unknown error condition.
       This is the default value for NDS error codes which do not map to other LDAP error codes.
     - LDAP_OTHER:0x50
   81:
     - :server_down
-    - Server Down
+    - LDAP Server Down
     - Indicates the LDAP client cannot establish a connection with, or lost the connection to, the LDAP server.
     - LDAP_SERVER_DOWN:0x51
   82:
     - :local_error
-    - Local Client Error
+    - LDAP Local Client Error
     - Indicates an error occurred in the LDAP client.
     - LDAP_LOCAL_ERROR:0x52
   83:
     - :encoding_error
-    - Encoding Error
+    - LDAP Encoding Error
     - Indicates the LDAP client encountered an error when encoding the LDAP request to be sent to the server.
     - LDAP_ENCODING_ERROR:0x53
   84:
     - :decoding_error
-    - Decoding Error
+    - LDAP Decoding Error
     - Indicates the LDAP client encountered an error when decoding the LDAP response received from the server.
     - LDAP_DECODING_ERROR:0x54
   85:
     - :timeout
-    - Timeout
+    - LDAP Timeout
     - >
       Indicates the LDAP client timed out while waiting for a response from the server.
       The specified timeout period has been exceeded and the server has not responded.
     - LDAP_TIMEOUT:0x55
   86:
     - :auth_method_unknown
-    - Unknown Authentication Method
+    - LDAP Unknown Authentication Method
     - Indicates an unknown authentication method was specified.
     - LDAP_AUTH_UNKNOWN:0x56
   87:
     - :filter_error
-    - Filter Error
+    - LDAP Filter Error
     - Indicates an error occurred when specifying the search filter.
     - LDAP_FILTER_ERROR:0x57
   88:
     - :user_cancelled
-    - User Cancelled
+    - LDAP User Cancelled
     - Indicates the user cancelled the LDAP operation
     - LDAP_USER_CANCELLED:0x58
   89:
     - :param_error
-    - Invalid Parameter
+    - LDAP Invalid Parameter
     - Indicates that an invalid parameter was specified.
     - LDAP_PARAM_ERROR:0x59
   90:
     - :no_memory
-    - No Memory
+    - LDAP No Memory
     - >
       Indicates that no memory is available.
       For example, when creating an LDAP request or an LDAP control.
     - LDAP_NO_MEMORY:0x5a
   91:
     - :connect_error
-    - Connection Error
+    - LDAP Connection Error
     - Indicates the LDAP client cannot establish a connection, or has lost the connection, with the LDAP server.
     - LDAP_CONNECT_ERROR:0x5b
   92:
     - :not_supported
-    - Not Supported
+    - LDAP Not Supported
     - >
       Indicates that the LDAP client is attempting to use functionality that is not supported.
       For example, the client identifies itself as an LDAPv2 client, and attempt to use functionality only available in LDAPv3.
     - LDAP_NOT_SUPPORTED:0x5c
   93:
     - :control_not_found
-    - Control Not Found
+    - LDAP Control Not Found
     - >
       Indicates a requested LDAP control was not found.
       This result code is set when the client parsing a server response for controls and not finding the requested controls
     - LDAP_CONTROL_NOT_FOUND:0x5d
   94:
     - :no_results_returned
-    - No Results returned
+    - LDAP No Results returned
     - Indicates no results were returned from the server.
     - LDAP_NO_RESULTS_RETURNED:0x5e
   95:
     - :more_results
-    - More Results To Return
+    - LDAP More Results To Return
     - >
       Indicates there are more results in the chain of results.
       This result code is returned when additional result codes are available from the LDAP server.
     - LDAP_MORE_RESULTS_TO_RETURN:0x5f
   96:
     - :client_loop
-    - Client Loop
+    - LDAP Client Loop
     - Indicates the LDAP client detected a loop, for example, when following referrals.
     - LDAP_CLIENT_LOOP:0x60
   97:
     - :referral_limit
-    - Referral Limit Exceeded
+    - LDAP Referral Limit Exceeded
     - >
       Indicates that the referral hop limit was exceeded.
       This result code is if the client is referred to other servers more times than allowed by the referral hop limit.
