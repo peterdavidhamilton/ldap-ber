@@ -6,7 +6,7 @@ module BER
   #
   class Function
     def parse_ber_object(syntax, id, data)
-      object_type = (syntax && syntax[id]) || BUILTIN_SYNTAX[id]
+      object_type = (syntax && syntax[id]) || IDENTIFIED[id]
 
       case object_type
       when :string

@@ -49,8 +49,8 @@ module BER
 
   Error = Class.new(RuntimeError)
 
-  ASN_SYNTAX       = compile_syntax(config[:syntax])
-  BUILTIN_SYNTAX   = compile_syntax(config[:builtin_syntax])
+  ASN_SYNTAX       = compile_syntax(config[:syntax]).freeze
+  IDENTIFIED       = compile_syntax(config[:identified_type]).freeze
   MAX_FIXNUM_SIZE  = 0.size
   WILDCARD         = '*'.freeze
   NEW_LINE         = "\n".freeze
