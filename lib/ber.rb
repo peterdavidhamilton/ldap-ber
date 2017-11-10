@@ -53,5 +53,4 @@ module BER
   IDENTIFIED       = compile_syntax(config[:identified_type]).freeze
   MAX_FIXNUM_SIZE  = 0.size
   WILDCARD         = '*'.freeze
-  NEW_LINE         = "\n".freeze
 end
