@@ -19,7 +19,7 @@ module BER
   end
 
   def self.config
-    Psych.load_file(root.join('ber/config.yaml')).freeze
+    @config ||= Psych.load_file(root.join('ber/config.yaml')).freeze
   end
 
   def self.reverse_lookup(type, symbol)
