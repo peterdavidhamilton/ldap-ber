@@ -15,7 +15,7 @@ module BER
     end
 
     def to_ber(code = 0x04)
-      raw_string = raw_utf8_encoded
+      raw_string = ascii_encoded
       [code].pack('C') + raw_string.length.to_ber_length_encoding + raw_string
     end
 
@@ -23,15 +23,14 @@ module BER
       [code].pack('C') + length.to_ber_length_encoding + self
     end
 
-    def raw_utf8_encoded
-      return self if respond_to?(:encode)
+    def ascii_encoded
       encode('UTF-8').force_encoding('ASCII-8BIT')
     rescue Encoding::UndefinedConversionError,
            Encoding::ConverterNotFoundError,
            Encoding::InvalidByteSequenceError
       self
     end
-    private :raw_utf8_encoded
+    private :ascii_encoded
 
     def to_ber_application_string(code)
       to_ber(0x40 + code)
