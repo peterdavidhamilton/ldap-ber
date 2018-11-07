@@ -124,7 +124,12 @@
   14: :compare_request
   15: :compare_response
   16: :abandon_request
+  17: :unknown
+  18: :unknown
   19: :search_result_referral
+  20: :unknown
+  21: :unknown
+  22: :unknown
   23: :extended_request
   24: :extended_response
   25: :intermediate_response
