@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'bundler'
 Bundler.setup
 
@@ -14,14 +16,12 @@ if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
   end
 end
 
-if ENV['PRY']
-  begin
-    require 'pry-byebug'
-  rescue LoadError
-  end
+begin
+  require 'pry-byebug'
+rescue LoadError
 end
 
 require 'ber'
 
 require 'pathname'
-SPEC_ROOT = root = Pathname(__FILE__).dirname
+SPEC_ROOT = Pathname(__FILE__).dirname

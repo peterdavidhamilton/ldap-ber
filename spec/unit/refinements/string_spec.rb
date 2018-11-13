@@ -1,26 +1,25 @@
-require 'spec_helper'
-
-RSpec.describe String do
+RSpec.describe String, 'refined using ::BER' do
   using ::BER
 
   describe 'ASN_SYNTAX' do
     it 'decode string' do
-      expect("\004\007testing".read_ber(BER::ASN_SYNTAX)).to eql('testing')
+      expect("\004\007testing".read_ber).to eql('testing')
+      # expect("\004\007testing".read_ber(BER::ASN_SYNTAX)).to eql('testing')
     end
   end
 
   describe 'utf8' do
-    # it 'encode utf8 strings' do
-    #   expect("\u00e5".force_encoding('UTF-8').to_ber).to eql("\x04\x02\xC3\xA5".b)
-    # end
+    it 'encode utf8 strings' do
+      expect("\u00e5".force_encoding('UTF-8').to_ber).to eql("\x04\x02\xC3\xA5".b)
+    end
 
     it 'utf8 encodable strings' do
       expect('teststring'.encode('US-ASCII').to_ber).to eql("\x04\nteststring")
     end
 
-    # it 'non utf8 encodable strings' do
-    #   expect("\x81".to_ber).to eql("\x04\x01\x81".b)
-    # end
+    it 'non utf8 encodable strings' do
+      expect("\x81".to_ber).to eql("\x04\x01\x81".b)
+    end
   end
 
   # This is used for searching for GUIDs in Active Directory

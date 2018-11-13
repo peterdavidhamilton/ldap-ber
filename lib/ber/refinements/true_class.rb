@@ -1,3 +1,5 @@
+# Refine TrueClass
+#
 module BER
   refine ::TrueClass do
     def to_ber

@@ -1,3 +1,5 @@
+# Refine Array
+#
 module BER
   refine ::Array do
     def to_ber(id = 0)
@@ -18,13 +20,6 @@ module BER
       to_ber_seq_internal(0xa0 + id)
     end
 
-    def to_ber_seq_internal(code)
-      s = join
-      [code].pack('C') + s.length.to_ber_length_encoding + s
-    end
-
-    private :to_ber_seq_internal
-
     def to_ber_oid
       ary   = dup
       first = ary.shift
@@ -38,9 +33,17 @@ module BER
     def to_ber_control
       ary = self[0].is_a?(Array) ? self : [self]
       ary = ary.collect do |control_sequence|
-        control_sequence.collect(&:to_ber).to_ber_sequence.reject_empty_ber_arrays
+        # control_sequence.collect(&:to_ber).to_ber_sequence.reject_empty_ber_arrays
+        control_sequence.collect { |c| c.to_ber }.to_ber_sequence.reject_empty_ber_arrays
       end
       ary.to_ber_sequence.reject_empty_ber_arrays
+    end
+
+    private
+
+    def to_ber_seq_internal(code)
+      s = join
+      [code].pack('C') + s.length.to_ber_length_encoding + s
     end
   end
 end

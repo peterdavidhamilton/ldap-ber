@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Used in BER::Converter,
 #   ROM::LDAP::Connection and its operation modules.

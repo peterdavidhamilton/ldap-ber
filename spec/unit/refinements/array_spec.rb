@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-RSpec.describe Array do
+RSpec.describe Array, 'refined using ::BER' do
   using ::BER
 
   describe 'read_ber' do
@@ -9,7 +7,7 @@ RSpec.describe Array do
     end
 
     it 'array' do
-      expect([1, 2, 3].map(&:to_ber).to_ber.read_ber).to eql([1, 2, 3])
+      expect([1, 2, 3].map { |i| i.to_ber }.to_ber.read_ber).to eql([1, 2, 3])
     end
   end
 

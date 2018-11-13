@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Refine Integer
+#
 module BER
   refine ::Integer do
     def to_ber
@@ -25,15 +29,15 @@ module BER
 
     def to_ber_internal
       size  = 1
-      size += 1 until ((self < 0 ? ~self : self) >> (size * 8)).zero?
+      size += 1 until ((negative? ? ~self : self) >> (size * 8)).zero?
 
-      size += 1 if self > 0 && (self & (0x80 << (size - 1) * 8)) > 0
+      size += 1 if positive? && (self & (0x80 << (size - 1) * 8)).positive?
 
-      size += 1 if self < 0 && (self & (0x80 << (size - 1) * 8)) == 0
+      size += 1 if negative? && (self & (0x80 << (size - 1) * 8)).zero?
 
       result = [size]
 
-      while size > 0
+      while size.positive?
         result << ((self >> ((size - 1) * 8)) & 0xff)
         size -= 1
       end

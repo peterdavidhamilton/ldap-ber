@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe 'LDAP Requests' do
   using ::BER
 
@@ -12,15 +10,15 @@ RSpec.describe 'LDAP Requests' do
       expect(bind_request.read_ber(BER::ASN_SYNTAX)).to eql([1, [3, 'Administrator', 'ad_is_bogus']])
     end
 
-    # it 'exception does not modify string' do
-    #   duplicate = bind_request.dup
+    xit 'exception does not modify string' do
+      duplicate = bind_request.dup
 
-    #   expect_any_instance_of(StringIO).to receive(:read_ber).and_raise(BER::Error)
+      expect_any_instance_of(StringIO).to receive(:read_ber).and_raise(BER::Error)
 
-    #   expect { duplicate.read_ber!(BER::ASN_SYNTAX) }.to raise_error(BER::Error)
+      expect { duplicate.read_ber!(BER::ASN_SYNTAX) }.to raise_error(BER::Error)
 
-    #   expect(bind_request).to eql(duplicate)
-    # end
+      expect(bind_request).to eql(duplicate)
+    end
   end
 
   describe 'ASN_SYNTAX' do
@@ -32,8 +30,9 @@ RSpec.describe 'LDAP Requests' do
       expect(bind_request.read_ber!(BER::ASN_SYNTAX)).to eql([1, [3, 'Administrator', 'ad_is_bogus']])
     end
 
-    # it 'unconsumed message' do
-    #   expect(bind_request).to eql(' UNCONSUMED')
-    # end
+    it 'unconsumed message' do
+      bind_request.read_ber!(BER::ASN_SYNTAX)
+      expect(bind_request).to eql(' UNCONSUMED')
+    end
   end
 end

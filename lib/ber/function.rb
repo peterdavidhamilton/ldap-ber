@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ber/identified'
 
 module BER
@@ -84,20 +86,18 @@ module BER
       end
     end
 
-    def read_ber(object, syntax = nil)
-      if id = object.getbyte
-        content_length = read_ber_length(object)
+    def read_ber(object, syntax)
+      return unless (id = object.getbyte)
 
-        yield id, content_length if block_given?
+      content_length = read_ber_length(object)
 
-        if content_length == -1
-          raise Error, 'Indeterminite BER content length not implemented.'
-        end
+      yield id, content_length if block_given?
 
-        data = object.read(content_length)
+      raise Error, 'Indeterminite BER content length not implemented.' if content_length == -1
 
-        parse_ber_object(syntax, id, data)
-      end
+      data = object.read(content_length)
+
+      parse_ber_object(syntax, id, data)
     end
   end
 end

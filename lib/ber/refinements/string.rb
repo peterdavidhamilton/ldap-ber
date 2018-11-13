@@ -1,9 +1,18 @@
 require 'stringio'
 
+# Refine String
+#
 module BER
   refine ::String do
     def read_ber(syntax = nil)
-      ::BER.function.read_ber(self, syntax)
+      ::StringIO.new(self).read_ber(syntax)
+    end
+
+    def read_ber!(syntax = nil)
+      io     = ::StringIO.new(self)
+      result = io.read_ber(syntax)
+      slice!(0...io.pos)
+      result
     end
 
     def read_ber_length
@@ -23,15 +32,6 @@ module BER
       [code].pack('C') + length.to_ber_length_encoding + self
     end
 
-    def ascii_encoded
-      encode('UTF-8').force_encoding('ASCII-8BIT')
-    rescue Encoding::UndefinedConversionError,
-           Encoding::ConverterNotFoundError,
-           Encoding::InvalidByteSequenceError
-      self
-    end
-    private :ascii_encoded
-
     def to_ber_application_string(code)
       to_ber(0x40 + code)
     end
@@ -40,19 +40,18 @@ module BER
       to_ber(0x80 + code)
     end
 
-    def read_ber(syntax = nil)
-      ::StringIO.new(self).read_ber(syntax)
-    end
-
-    def read_ber!(syntax = nil)
-      io     = ::StringIO.new(self)
-      result = io.read_ber(syntax)
-      slice!(0...io.pos)
-      result
-    end
-
     def reject_empty_ber_arrays
       gsub(/0\000/n, '')
+    end
+
+    private
+
+    def ascii_encoded
+      encode('UTF-8').force_encoding('ASCII-8BIT')
+    rescue Encoding::UndefinedConversionError,
+           Encoding::ConverterNotFoundError,
+           Encoding::InvalidByteSequenceError
+      self
     end
   end
 end

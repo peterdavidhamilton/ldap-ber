@@ -1,3 +1,5 @@
+# Refine FalseClass
+#
 module BER
   refine ::FalseClass do
     def to_ber

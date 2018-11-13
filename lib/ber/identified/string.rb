@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BER
   class BerIdentifiedString < String
     attr_accessor :ber_identifier

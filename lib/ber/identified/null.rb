@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BER
   class BerIdentifiedNull
     attr_accessor :ber_identifier

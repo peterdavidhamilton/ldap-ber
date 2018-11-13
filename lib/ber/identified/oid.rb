@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 module BER
   class BerIdentifiedOid
     attr_accessor :ber_identifier
 
     def initialize(oid)
-      oid = oid.split(/\./).map(&:to_i) if oid.is_a?(String)
-      @value = oid
+      @value = oid.split(/\./).map(&:to_i) if oid.is_a?(String)
     end
 
     def to_ber

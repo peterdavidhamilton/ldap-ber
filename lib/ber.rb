@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'dry/core/constants'
-require 'psych'
+require 'yaml'
 require 'pathname'
 require 'ber/version'
 require 'ber/function'
@@ -11,7 +13,7 @@ module BER
   include Dry::Core::Constants
 
   def self.function
-    @func ||= Function.new
+    @function ||= Function.new
   end
 
   def self.root
@@ -19,7 +21,7 @@ module BER
   end
 
   def self.config
-    @config ||= Psych.load_file(root.join('ber/config.yaml')).freeze
+    @config ||= YAML.load_file(root.join('ber/config.yaml')).freeze
   end
 
   def self.reverse_lookup(type, symbol)
@@ -52,5 +54,5 @@ module BER
   ASN_SYNTAX       = compile_syntax(config[:syntax]).freeze
   IDENTIFIED       = compile_syntax(config[:identified_type]).freeze
   MAX_FIXNUM_SIZE  = 0.size
-  WILDCARD         = '*'.freeze
+  WILDCARD         = '*'
 end

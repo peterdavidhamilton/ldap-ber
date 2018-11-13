@@ -1,3 +1,5 @@
+# Refine ::OpenSSL::SSL::SSLSocket
+#
 module BER
   if defined? ::OpenSSL
     refine ::OpenSSL::SSL::SSLSocket do

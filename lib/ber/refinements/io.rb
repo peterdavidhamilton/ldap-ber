@@ -1,3 +1,5 @@
+# Refine IO
+#
 module BER
   refine ::IO do
     def read_ber(syntax = nil)

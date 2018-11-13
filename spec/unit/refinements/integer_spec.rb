@@ -1,11 +1,5 @@
-require 'spec_helper'
-
-RSpec.describe Integer do
+RSpec.describe Integer, 'refined using ::BER' do
   using ::BER
-
-  it 'decode number' do
-    expect("\002\001\006".read_ber(BER::ASN_SYNTAX)).to eql(6)
-  end
 
   let(:sample) do
     {
@@ -43,9 +37,20 @@ RSpec.describe Integer do
     }
   end
 
-  it 'integers' do
+
+  it 'ASN_SYNTAX' do
+    expect("\002\001\006".read_ber(BER::ASN_SYNTAX)).to eql(6)
+    expect("\002\001\006".read_ber).to eql(6)
+  end
+
+  it '#to_ber' do
     sample.each do |int, encoded_int|
       expect(int.to_ber).to eql(encoded_int.b)
+    end
+  end
+
+  it '#read_ber' do
+    sample.each do |int, encoded_int|
       expect(encoded_int.b.read_ber).to eql(int)
     end
   end

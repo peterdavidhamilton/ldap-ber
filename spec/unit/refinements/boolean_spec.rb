@@ -1,9 +1,7 @@
-require 'spec_helper'
-
 #
 # http://tools.ietf.org/html/rfc4511#section-5.1
 #
-RSpec.describe 'Boolean' do
+RSpec.describe 'Boolean', 'refined using ::BER' do
   using ::BER
 
   it 'true' do
