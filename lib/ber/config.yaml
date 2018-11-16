@@ -528,26 +528,14 @@
 
 
 
-
 #
-# LDAP OID to Ruby object or Dry::Type mapping.
+# LDAP Attribute OID to Ruby object or Dry::Type mapping.
 #
 # @see https://tools.ietf.org/html/rfc2252.html
 #
-:types:
-  1.2.840.113556.1.2.19:           Time
-  1.2.840.113556.1.4.49:           Time
-  1.2.840.113556.1.4.52:           Time
-  1.2.840.113556.1.4.53:           Time
-  1.2.840.113556.1.4.96:           Time
-  1.2.840.113556.1.2.120:          Time
-  1.2.840.113556.1.4.906:          Integer
-  1.2.840.113556.1.4.907:          String
-  1.2.840.113556.1.4.1221:         String
-  1.2.840.113556.1.4.1362:         String
-  1.2.840.113556.1.4.1221:         String
-  1.2.840.113556.1.4.1696:         Time
+:type:
   1.3.6.1.1.16.1:                  String     # UUID
+
   1.3.6.1.4.1.1466.115.121.1.1:    String     # ACI Item
   1.3.6.1.4.1.1466.115.121.1.2:    String     # Access Point
   1.3.6.1.4.1.1466.115.121.1.3:    String     # Attribute Type Description
@@ -572,7 +560,7 @@
   1.3.6.1.4.1.1466.115.121.1.25:   String     # Guide
   1.3.6.1.4.1.1466.115.121.1.26:   String     # IA5String - IA5 ISO-646 (ASCII).
   1.3.6.1.4.1.1466.115.121.1.27:   Integer    # INTEGER
-  1.3.6.1.4.1.1466.115.121.1.28:   Binary     # JPEG - RFC2798: Joint Photographic Experts Group (JPEG) image syntax from inetOrgPerson object class schema.
+  1.3.6.1.4.1.1466.115.121.1.28:   Jpeg       # JPEG - RFC2798: Joint Photographic Experts Group (JPEG) image syntax from inetOrgPerson object class schema.
   1.3.6.1.4.1.1466.115.121.1.32:   String     # Mail Preference
   1.3.6.1.4.1.1466.115.121.1.34:   String     # Name And Optional UID
   1.3.6.1.4.1.1466.115.121.1.35:   String     # Name Form Description
@@ -589,13 +577,37 @@
   1.3.6.1.4.1.1466.115.121.1.50:   String     # Telephone Number
   1.3.6.1.4.1.1466.115.121.1.51:   String     # Teletex Terminal Identifier
   1.3.6.1.4.1.1466.115.121.1.52:   String     # Telex Number
-  1.3.6.1.4.1.1466.115.121.1.53:   Time       # UTC Time
+  1.3.6.1.4.1.1466.115.121.1.53:   Time       # UTC Time (deprecated, use 24)
   1.3.6.1.4.1.1466.115.121.1.54:   String     # LDAP Syntax Description
   1.3.6.1.4.1.1466.115.121.1.56:   String     # LDAP Schema Definition
   1.3.6.1.4.1.1466.115.121.1.57:   String     # LDAP Schema Description
 
+  # Microsoft Active Directory
+  #
+  # @see https://docs.microsoft.com/en-gb/windows/desktop/ADSchema/attributes-all
+  # @see https://docs.microsoft.com/en-us/windows/desktop/ADSI/data-type-mapping-between-active-directory-and-ldap
+  #
+  1.2.840.113556.1.2.19:           Time       # uSNCreated
+  1.2.840.113556.1.4.49:           Time       # badPasswordTime
+  1.2.840.113556.1.4.52:           Time       # lastLogon
+  1.2.840.113556.1.4.53:           Time       # lastSetTime
+  1.2.840.113556.1.4.60:           Time       # lockoutDuration
+  1.2.840.113556.1.4.74:           Time       # maxPwdAge
+  1.2.840.113556.1.4.76:           Integer    # maxStorage
+  1.2.840.113556.1.4.78:           Time       # minPwdAge
+  1.2.840.113556.1.4.96:           Time       # pwdLastSet
+  1.2.840.113556.1.2.120:          Time       # uSNChanged
+  1.2.840.113556.1.4.159:          Time       # accountExpires
+  1.2.840.113556.1.4.371:          Integer    # rIDAllocationPool
+  1.2.840.113556.1.4.662:          Time       # lockoutTime
+  1.2.840.113556.1.4.906:          Integer    # INTEGER8
+  1.2.840.113556.1.4.907:          String     # ObjectSecurityDescriptor
+  1.2.840.113556.1.4.1221:         String     # CaseIgnoreString / ORName
+  1.2.840.113556.1.4.1362:         String     # CaseExactString
+  1.2.840.113556.1.4.1696:         Time       # lastLogonTimeStamp
 
-:controls:
+
+:control:
   1.2.826.0.1.3344810.2.3:      :matched_values_control
   1.2.840.113556:               :microsoft_oid_prefix
   1.2.840.113556.1.4.319:       :paged_results
