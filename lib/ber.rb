@@ -21,7 +21,7 @@ module BER
   end
 
   def self.config
-    @config ||= YAML.load_file(root.join('ber/config.yaml')).freeze
+    @config ||= YAML.load_file(root.join('ber.yaml')).freeze
   end
 
   def self.reverse_lookup(type, symbol)

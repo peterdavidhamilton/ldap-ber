@@ -2,18 +2,19 @@ RSpec.describe BER do
   describe 'hash mapping' do
     it '#config' do
       expect(BER.config).to be_kind_of(Hash)
-      expect(BER.config[:types]).to have_key('1.3.6.1.4.1.1466.115.121.1.2')
       expect(BER.config[:response]).to have_key(25)
+      expect(BER.config[:result]).to have_key(0)
+      expect(BER.config[:result]).to_not have_key(22)
     end
 
     it '#lookup' do
       expect(BER.lookup(:response, 25)).to eql(:intermediate_response)
-      expect(BER.lookup(:types, '1.3.6.1.4.1.1466.115.121.1.2')).to eql('String')
+      expect(BER.lookup(:result, 0)).to eql(:success)
     end
 
     it '#reverse_lookup' do
       expect(BER.reverse_lookup(:response, :intermediate_response)).to eql(25)
-      expect(BER.reverse_lookup(:types, 'Bool')).to eql('1.3.6.1.4.1.1466.115.121.1.7')
+      expect(BER.reverse_lookup(:result, :success)).to eql(0)
     end
   end
 
