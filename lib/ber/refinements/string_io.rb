@@ -2,7 +2,7 @@
 #
 module BER
   refine ::StringIO do
-    def read_ber(syntax = BER::ASN_SYNTAX)
+    def read_ber(syntax = ::BER::ASN_SYNTAX)
       ::BER.function.read_ber(self, syntax)
     end
 

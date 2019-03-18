@@ -4,11 +4,11 @@ require 'stringio'
 #
 module BER
   refine ::String do
-    def read_ber(syntax = nil)
+    def read_ber(syntax = ::BER::ASN_SYNTAX)
       ::StringIO.new(self).read_ber(syntax)
     end
 
-    def read_ber!(syntax = nil)
+    def read_ber!(syntax = ::BER::ASN_SYNTAX)
       io     = ::StringIO.new(self)
       result = io.read_ber(syntax)
       slice!(0...io.pos)
