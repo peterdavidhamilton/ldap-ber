@@ -24,12 +24,14 @@ module BER
     @config ||= YAML.load_file(root.join('ber.yaml')).freeze
   end
 
-  def self.reverse_lookup(type, symbol)
-    config[type].key(symbol)
-  end
-
-  def self.lookup(type, int)
-    config[type][int]
+  def self.fetch(type, val)
+    type = config[type]
+    case val
+    when Integer
+      type[val]
+    when Symbol
+      type.key(val)
+    end
   end
 
   def self.compile_syntax(syntax)
