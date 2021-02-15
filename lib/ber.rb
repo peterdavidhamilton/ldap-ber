@@ -16,21 +16,37 @@ module BER
     @function ||= Function.new
   end
 
+  # Path to gem root
+  #
+  # @return [Pathname]
+  #
+  # @api private
   def self.root
     Pathname(File.dirname(__FILE__))
   end
 
+  #
+  #
+  # @return [Hash]
+  #
+  # @api private
   def self.config
     @config ||= YAML.load_file(root.join('ber.yaml')).freeze
   end
 
+  #
+  #
+  # @param type [Symbol] (:response)
+  #
+  # @param val [Integer, Symbol]
+  #
+  # @return [Symbol, Integer]
+  #
+  # @api private
   def self.fetch(type, val)
-    type = config[type]
     case val
-    when Integer
-      type[val]
-    when Symbol
-      type.key(val)
+    when Integer then config[type][val]
+    when Symbol  then config[type].key(val)
     end
   end
 

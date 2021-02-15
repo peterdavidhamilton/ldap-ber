@@ -8,13 +8,13 @@ RSpec.describe BER do
     end
 
     it '#lookup' do
-      expect(BER.lookup(:response, 25)).to eql(:intermediate_response)
-      expect(BER.lookup(:result, 0)).to eql(:success)
+      expect(BER.fetch(:response, 25)).to eql(:intermediate_response)
+      expect(BER.fetch(:result, 0)).to eql(:success)
     end
 
     it '#reverse_lookup' do
-      expect(BER.reverse_lookup(:response, :intermediate_response)).to eql(25)
-      expect(BER.reverse_lookup(:result, :success)).to eql(0)
+      expect(BER.fetch(:response, :intermediate_response)).to eql(25)
+      expect(BER.fetch(:result, :success)).to eql(0)
     end
   end
 

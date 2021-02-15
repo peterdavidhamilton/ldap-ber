@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'stringio'
 
 # Refine String
@@ -23,15 +25,30 @@ module BER
       ::BER.function.parse_ber_object(self, syntax, id, data)
     end
 
+    # @param code [String] (0x04)
+    #
+    # @return [String]
+    #
+    # @api public
     def to_ber(code = 0x04)
       raw_string = ascii_encoded
       [code].pack('C') + raw_string.length.to_ber_length_encoding + raw_string
     end
 
+    # @param code [String] (0x04)
+    #
+    # @return [String]
+    #
+    # @api public
     def to_ber_bin(code = 0x04)
       [code].pack('C') + length.to_ber_length_encoding + self
     end
 
+    # @param code [String]
+    #
+    # @return [String]
+    #
+    # @api public
     def to_ber_application_string(code)
       to_ber(0x40 + code)
     end
@@ -41,7 +58,7 @@ module BER
     end
 
     def reject_empty_ber_arrays
-      gsub(/0\000/n, '')
+      gsub(/0\000/n, ::BER::EMPTY_STRING)
     end
 
     private

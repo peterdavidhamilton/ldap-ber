@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Refine ::OpenSSL::SSL::SSLSocket
 #
 module BER

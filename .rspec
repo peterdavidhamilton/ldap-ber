@@ -1,4 +1,6 @@
---color
+--require spec_helper
 --order random
---require ./spec/spec_helper
 --format documentation
+--color
+--profile
+--fail-fast

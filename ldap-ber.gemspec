@@ -20,12 +20,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.metadata['yard.run']  = 'yri'
-  spec.required_ruby_version = '>= 2.3.0'
+  spec.required_ruby_version = '>= 2.4.0'
 
-  spec.add_runtime_dependency 'dry-core'
-  spec.add_runtime_dependency 'dry-initializer'
+  spec.add_runtime_dependency 'dry-core', '~> 0.4'
+  spec.add_runtime_dependency 'dry-initializer', '~> 3.0'
 
-  spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'rake', '> 12.0'
-  spec.add_development_dependency 'rspec', '~> 3.5'
+  spec.add_development_dependency 'bundler', '~> 2.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rspec', '~> 3.9'
 end

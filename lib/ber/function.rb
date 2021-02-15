@@ -3,7 +3,8 @@
 require 'ber/identified'
 
 module BER
-  # Instantiated once in the top namespace as a module method.
+  # @see BER.function
+  #
   # Used within refinements to identify...
   #
   class Function
@@ -17,7 +18,7 @@ module BER
         s
 
       when :integer
-        neg = !(data.unpack('C').first & 0x80).zero?
+        neg = !(data.unpack1('C') & 0x80).zero?
         int = 0
 
         data.each_byte do |b|

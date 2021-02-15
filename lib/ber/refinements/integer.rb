@@ -4,10 +4,16 @@
 #
 module BER
   refine ::Integer do
+    # @return [String]
+    #
+    # @api public
     def to_ber
       "\002#{to_ber_internal}"
     end
 
+    # @return [String]
+    #
+    # @api public
     def to_ber_enumerated
       "\012#{to_ber_internal}"
     end
@@ -16,11 +22,16 @@ module BER
       if self <= 127
         [self].pack('C')
       else
-        i = [self].pack('N').sub(/^[\0]+/, '')
+        i = [self].pack('N').sub(/^[\0]+/, ::BER::EMPTY_STRING)
         [0x80 + i.length].pack('C') + i
       end
     end
 
+    # @param tag [Integer]
+    #
+    # @return [String]
+    #
+    # @api private
     def to_ber_application(tag)
       [0x40 + tag].pack('C') + to_ber_internal
     end

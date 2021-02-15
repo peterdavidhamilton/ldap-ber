@@ -1,21 +1,31 @@
+# frozen_string_literal: true
+
 # Refine Array
 #
 module BER
   refine ::Array do
+    # 48
+    #
     def to_ber(id = 0)
       to_ber_seq_internal(0x30 + id)
     end
 
     alias_method :to_ber_sequence, :to_ber
 
+    # 49
+    #
     def to_ber_set(id = 0)
       to_ber_seq_internal(0x31 + id)
     end
 
+    # 96
+    #
     def to_ber_appsequence(id = 0)
       to_ber_seq_internal(0x60 + id)
     end
 
+    # 160
+    #
     def to_ber_contextspecific(id = 0)
       to_ber_seq_internal(0xa0 + id)
     end
@@ -24,6 +34,7 @@ module BER
       ary   = dup
       first = ary.shift
       raise BER::Error, 'Invalid OID' unless [0, 1, 2].include?(first)
+
       first = first * 40 + ary.shift
       ary.unshift first
       oid = ary.pack('w*')
@@ -33,8 +44,7 @@ module BER
     def to_ber_control
       ary = self[0].is_a?(Array) ? self : [self]
       ary = ary.collect do |control_sequence|
-        # control_sequence.collect(&:to_ber).to_ber_sequence.reject_empty_ber_arrays
-        control_sequence.collect { |c| c.to_ber }.to_ber_sequence.reject_empty_ber_arrays
+        control_sequence.collect(&:to_ber).to_ber_sequence.reject_empty_ber_arrays
       end
       ary.to_ber_sequence.reject_empty_ber_arrays
     end
