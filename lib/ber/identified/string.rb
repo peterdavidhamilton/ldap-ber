@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module BER
+  # Wrapper around a String
+  #
+  # @see BER::Function.parse_ber_object
   class BerIdentifiedString < String
     attr_accessor :ber_identifier
 

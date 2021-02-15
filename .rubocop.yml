@@ -10,3 +10,11 @@ AllCops:
     - doc/**/*
     - spec/**/*
   TargetRubyVersion: 2.4
+
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true

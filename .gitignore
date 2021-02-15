@@ -4,10 +4,11 @@
 *.html
 *.o
 *.so
-/.bundle/
-/.yardoc
-/coverage/
-/doc/
-/Gemfile.lock
-tags
+.ruby-version
+.bundle/
+.yardoc
+coverage/
+doc/
+Gemfile.lock
 pkg
+tags
