@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['pete@peterdavidhamilton.com']
   spec.summary       = 'LDAP Basic Encoding Rules: used by rom-ldap'
   spec.description   = 'Refactored from Net:LDAP gem.'
-  spec.homepage      = 'http://tbc'
+  spec.homepage      = 'https://gitlab.com/peterdavidhamilton/ldap-ber'
   spec.license       = 'MIT'
   spec.files         = `git ls-files -z`.split("\x0")
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
